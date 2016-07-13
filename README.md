@@ -1,7 +1,7 @@
-# TriangleChallenge
+# **Tri**angle**Fin**der
 A small piece of JAVA code that determines type of triangles, and provides guidelines to divide and conquer complex real world problems.
 
-# TriangleChallenge
+# **TriFin**
 TrainagleChallenge is a small JAVA application that detects three types of triangles i.e.  Equilateral, isosceles and scalene.  The major purpose of this application is to explain: 
 
 *	How to formulate and solve a real world problem in modern programming language.
