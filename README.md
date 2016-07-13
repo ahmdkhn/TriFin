@@ -1,5 +1,5 @@
 # TriangleChallenge
-A small piece of JAVA code that determines types of triangle, and provides guidelines to divide and conquer complex real world problems.
+A small piece of JAVA code that determines type of triangles, and provides guidelines to divide and conquer complex real world problems.
 
 # TriangleChallenge
 TrainagleChallenge is a small JAVA application that detects three types of triangles i.e.  Equilateral, isosceles and scalene.  The major purpose of this application is to explain: 
