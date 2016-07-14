@@ -41,10 +41,10 @@ Interface is TriangleTypeDetectionService and implementation is TriangleTypeDete
 TriangleDto does not implement any setters to mimic immutable behavior. However, it is not final and thus extensible. Although I am not a big fan of inheritting DTOs.
 
 ##Design Decision-5##
-Integration tests for Controllers are carreid out. Unit tests are performed on all major classes i.e. TriangleTypeDetectionController, TriangleMeasurementValidator and TriangleTypeDetectionServiceImpl. 
+Integration tests for Controllers are carreid out. 
 
 ##Implemenation Details##
-TriangleTypeDetectionControllerTest class covers all integration tests for the controller.
+TriangleTypeDetectionControllerTest class covers all integration tests for the controller. Unit tests are performed on all major classes i.e. TriangleTypeDetectionController, TriangleMeasurementValidator and TriangleTypeDetectionServiceImpl. 
 
 ##Design Decision-6
 Business Service must thoroughly be tested against business requirements.
