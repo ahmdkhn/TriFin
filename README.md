@@ -13,7 +13,7 @@ A small piece of JAVA code that determines type of triangles and provides guidel
 The core design decisions and logic behind the entire application is as follows:
 
 ## Design Decision-1
-**Use of MVC**: I chose MVC to be the base design framework. Generally, MVC is more suitable for large scale web applications to enforce "Separation of concerns", as loosely coupled code is more manageble and and extensible.
+**Use of MVC**: MVC is chosen as the base design framework. Generally, MVC is more suitable for large scale web applications to enforce "Separation of concerns", as loosely coupled code is more manageble and and extensible.
 
 
 ##Implementation Details
