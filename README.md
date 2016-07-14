@@ -17,10 +17,7 @@ The core design decisions and logic behind the entire application is as follows:
 
 
 ##Implementation Details
-**Use of TriangleDto as Model**: In this example, there is no need to separate Model or Data Transfer Object classes . However, in real world implementations it is a recommended prcatice to separate objects for all 3 entities to be used in data layer, domain object to be used in business layer and DTO to be used for transfering information in or out of application.
-
-##TriangleTypeDetectionController as Controller##
-Business Service interface is TriangleTypeDetectionService. Code can work with any implementation of TriangleTypeDetectionService. View in this application is "main" method in main.Driver class.
+**Use of TriangleDto as Model**: In this example, there is no need to separate Model or Data Transfer Object classes . However, in real world implementations it is a recommended prcatice to separate objects for all the entities to be used in data layer, domain object to be used in business layer and DTO to be used for transfering information in or out of application. In this example TriangleTypeDetectionController is used as a Controller and TriangleTypeDetectionService is used as Business Service interface. Code can work with any implementation of TriangleTypeDetectionService. View in this application is "main" method in main.Driver class.
 
 ##Design Decision-2
 **Use of Dependecy Injection**: Secondly, I decided to choose depedency injection pattern, so all the depedencies must be provided externally and dependency creation code must lie outside of the controller. This makes code easy to maintain and reusable. For example, pluging in a new implementation of Business service in controller class can be done easily even without looking into Controller class (Although I have a bad habit of always looking inside, which theoritically does not make sense). 
@@ -44,7 +41,7 @@ TriangleDto does not implement any setters to mimic immutable behavior. However,
 Integration tests for Controllers are carreid out. 
 
 ##Implemenation Details##
-TriangleTypeDetectionControllerTest class covers all integration tests for the controller. Unit tests are performed on all major classes i.e. TriangleTypeDetectionController, TriangleMeasurementValidator and TriangleTypeDetectionServiceImpl. 
+TriangleTypeDetectionControllerTest class covers all the integration tests required for the controller.  
 
 ##Design Decision-6
 Business Service must thoroughly be tested against business requirements.
