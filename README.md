@@ -6,25 +6,63 @@ A small piece of JAVA code that determines type of triangles and provides guidel
 
 *	How to formulate and solve a real world problem in modern programming language.
 *	How to overcome a complex problem by dividing it into smaller and easier to solve tasks. 
-*	To provide some coding guidelines to write programmer –friendly code, i.e.  Comprehensible, extensible and reusable code.
+*	To provide some coding guidelines to write programmer–friendly code following themodern design pattaerns, i.e.  Comprehensible, extensible and reusable code.
 *	To explain some features of OOP paradigm using JAVA.
 *	How to write unit tests, integration tests and use build automation tool such as Maven. 
 
-## Installation
-The application requires [JRE]( http://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html) to be run and [Java SE Development Kit]( http://www.oracle.com/technetwork/java/javase/downloads/index.html) along with any editor for code editing such as [Eclipse] (http://www.eclipse.org/downloads/packages/eclipse-ide-java-developers/keplersr1), [NetBeans]( https://netbeans.org/features/java/) or [IntelliJ IDEA]( https://www.jetbrains.com/idea/). You can also edit the code in the default editor of your operating system.  To build the application you need to have [Apache Maven]( https://maven.apache.org/download.cgi) (required) for any further testing [Junit]( http://junit.org/junit4/), [Mockito]( http://mockito.org/) or [TestNG](http://testng.org/doc/index.html) can be used. 
+The core design decisions and logic behind the entire application is as follows:
 
-## Application Core
-The core application logic is based on following classes; each class solves an important piece of the puzzle, i.e. original problem.
+## Design Decision-1## 
+**Use of MVC**: I chose MVC to be the base design framework. This is ideally suited for web applications but the benefits still hold in this case, for example "Separation of concern" and loosely coupled code.
 
-*	**TriangleMeasurementValidator:** Examines the validity/legitimacy of the arguments provided to determine the triangle.
-* **TriangleTypeDetectionController:** Makes use of triangleTypeDetectionService implementation to determine the type of triangle and TriangleDto class used as a [Data Transfer Object](https://en.wikipedia.org/wiki/Data_transfer_object) to cut the Inter Process communication/transmission cost. 
-*	**TriangleTypeDetectionServiceImpl:** Implements riangleTypeDetectionService and returns the triangle type.
-*	**Driver:**	Main application class that contains main() and wires all components of the application together.
 
-##Tests: 
-Unit tests are performed on all major classes i.e. TriangleTypeDetectionController, TriangleMeasurementValidator and TriangleTypeDetectionServiceImpl. 
+##Implementation Details##
+**Use of TriangleDto as Model**: In this example, I do not see need for separate model or Data Transfer Object classes . However, in real world implementations I always recommend creating separate objects for all 3 entities to be used in data layer, domain object to be used in business layer and DTO to be used for transfering information in or out of application.
 
-## Usage
+##TriangleTypeDetectionController as Controller##
+Business Service interface is TriangleTypeDetectionService. Code can work with any implementation of TriangleTypeDetectionService. View in this application is "main" method in main.Driver class.
+
+##Design Decision-2##
+**Use of Dependecy Injection**: Secondly, I decided to choose depedency injection pattern, so all the depedencies must be provided externally and dependency creation code must lie outside of the controller. This makes code easy to maintain and reusable. For example, pluging in a new implementation of Business service in controller class can be done easily even without looking into Controller class (Although I have a bad habit of always looking 
+inside, which theoritically doesnot make sense). 
+
+##Implemenation Details##:
+main.Driver class initializes and provides all the dependencies on need basis. 
+
+## Design Decision-3##
+**Use Interfaces**: Always tie the code with Business Service Interface instead of implementation. This is for high usability plus some advance frameworks can be used to generate proxy implementations on the fly for easy testing and mocking. 
+
+##Implemenation Details##
+Interface is TriangleTypeDetectionService and implementation is TriangleTypeDetectionServiceImpl. Code is not coupled to the implementation but to the the interface.
+
+##Design Decision-4##
+**Triangle Domain Object must be Immutable**: Triangle Domain Object should be extensible and immutable. Usually, In real world, often the requirment is immutable classes should not be inhertied. However, in this case I intentionally left it extensible, (it can be inherrited and child implementation may choose to compromise immuatable behavior). This is because if it is going to be used for some user drawing application then triangle object being immutable will be a short coming.
+
+##Implementation Details:##
+TriangleDto does not implement any setters to mimic immutable behavior. However, it is not final and thus extensible. Although I am not a big fan of inheritting DTOs.
+
+##Design Decision-5##
+Integration tests for Controllers are carreid out. Unit tests are performed on all major classes i.e. TriangleTypeDetectionController, TriangleMeasurementValidator and TriangleTypeDetectionServiceImpl. 
+
+##Implemenation Details##
+TriangleTypeDetectionControllerTest class covers all integration tests for our controller.
+
+##Design Decision-6## 
+Business Service must thoroughly be tested against business requirements.
+
+##Implementation Details##
+With cyclomatic complexity of 3, all paths in TriangleTypeDetectionServiceImpl are tested in TriangleTypeDetectionControllerTest class.
+
+## Design Decision-7##
+Controller must not be polluted by Validation Logic.
+
+##Implementation Details##
+TriangleMeasurementValidator class contains the validation code and validation is done outside contoller in main.Driver class. Generally I use external framweorks for validation.
+
+##Some Lazinesses##
+I created the object of immutable DTO inside controller. Generally it is good to create a factory in such cases or use of an external mapper library, however, in the context of this small task application, I considered it an overkill.
+
+## Usage##
 To run the application, you need to clone the repository, unzip it, and then keeping the repository as a root type and run:  *mvn clean install exec:java*
 
 You need to specify triangle side measurements using command line arguments. 
