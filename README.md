@@ -8,7 +8,7 @@ A small piece of JAVA code that determines type of triangles and provides guidel
 *	How to overcome a complex problem by dividing it into smaller and easier to solve tasks. 
 *	To provide some coding guidelines to write programmer–friendly code following the modern design patterns, i.e. Comprehensible, extensible and reusable code.
 *	To explain some features of OOP paradigm using JAVA.
-*	How to write unit tests, integration tests and use build automation tool such as Maven. 
+*	How to carry out testing and use build automation tool such as Maven. 
 
 The core design decisions and logic behind the entire application is as follows:
 
