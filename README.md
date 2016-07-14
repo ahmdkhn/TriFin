@@ -6,25 +6,24 @@ A small piece of JAVA code that determines type of triangles and provides guidel
 
 *	How to formulate and solve a real world problem in modern programming language.
 *	How to overcome a complex problem by dividing it into smaller and easier to solve tasks. 
-*	To provide some coding guidelines to write programmer–friendly code following the modern design pattaerns, i.e.  Comprehensible, extensible and reusable code.
+*	To provide some coding guidelines to write programmer–friendly code following the modern design patterns, i.e. Comprehensible, extensible and reusable code.
 *	To explain some features of OOP paradigm using JAVA.
 *	How to write unit tests, integration tests and use build automation tool such as Maven. 
 
 The core design decisions and logic behind the entire application is as follows:
 
 ## Design Decision-1
-**Use of MVC**: I chose MVC to be the base design framework. This is ideally suited for web applications but the benefits still hold in this case, for example "Separation of concern" and loosely coupled code.
+**Use of MVC**: I chose MVC to be the base design framework. Generally, MVC is more suitable for large scale web applications to enforce "Separation of concerns", as loosely coupled code is more manageble and and extensible.
 
 
 ##Implementation Details
-**Use of TriangleDto as Model**: In this example, I do not see need for separate model or Data Transfer Object classes . However, in real world implementations I always recommend creating separate objects for all 3 entities to be used in data layer, domain object to be used in business layer and DTO to be used for transfering information in or out of application.
+**Use of TriangleDto as Model**: In this example, there is no need to separate Model or Data Transfer Object classes . However, in real world implementations it is a recommended prcatice to separate objects for all 3 entities to be used in data layer, domain object to be used in business layer and DTO to be used for transfering information in or out of application.
 
 ##TriangleTypeDetectionController as Controller##
 Business Service interface is TriangleTypeDetectionService. Code can work with any implementation of TriangleTypeDetectionService. View in this application is "main" method in main.Driver class.
 
 ##Design Decision-2
-**Use of Dependecy Injection**: Secondly, I decided to choose depedency injection pattern, so all the depedencies must be provided externally and dependency creation code must lie outside of the controller. This makes code easy to maintain and reusable. For example, pluging in a new implementation of Business service in controller class can be done easily even without looking into Controller class (Although I have a bad habit of always looking 
-inside, which theoritically doesnot make sense). 
+**Use of Dependecy Injection**: Secondly, I decided to choose depedency injection pattern, so all the depedencies must be provided externally and dependency creation code must lie outside of the controller. This makes code easy to maintain and reusable. For example, pluging in a new implementation of Business service in controller class can be done easily even without looking into Controller class (Although I have a bad habit of always looking inside, which theoritically does not make sense). 
 
 ##Implemenation Details:
 main.Driver class initializes and provides all the dependencies on need basis. 
@@ -45,7 +44,7 @@ TriangleDto does not implement any setters to mimic immutable behavior. However,
 Integration tests for Controllers are carreid out. Unit tests are performed on all major classes i.e. TriangleTypeDetectionController, TriangleMeasurementValidator and TriangleTypeDetectionServiceImpl. 
 
 ##Implemenation Details##
-TriangleTypeDetectionControllerTest class covers all integration tests for our controller.
+TriangleTypeDetectionControllerTest class covers all integration tests for the controller.
 
 ##Design Decision-6
 Business Service must thoroughly be tested against business requirements.
@@ -57,7 +56,7 @@ With cyclomatic complexity of 3, all paths in TriangleTypeDetectionServiceImpl a
 Controller must not be polluted by Validation Logic.
 
 ##Implementation Details##
-TriangleMeasurementValidator class contains the validation code and validation is done outside contoller in main.Driver class. Generally I use external framweorks for validation.
+TriangleMeasurementValidator class contains the validation code and validation is done outside contoller in main.Driver class. Generally it is recommended to use external framweorks for validation.
 
 ##Some Lazinesses##
 I created the object of immutable DTO inside controller. Generally it is good to create a factory in such cases or use of an external mapper library, however, in the context of this small task application, I considered it an overkill.
